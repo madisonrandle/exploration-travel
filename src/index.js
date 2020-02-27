@@ -6,20 +6,33 @@ const getTravelersData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-trac
   .then(response => response.json())
   .then(travelersData => {
     domUpdates.showLogInForm(travelersData.travelers)
-    $('.submit-user-info').click((e) => formValidationHelper(e, travelersData.travelers));  // want to know why event listeners wont work in domUpdates??
+    $('.submit-user-info').click((e) => submitLoginInfoHelper(e, travelersData.travelers));
+   // want to know why event listeners ^ wont work in domUpdates??
   })
   .catch(error => console.log(`There was an error: ${error}`));
 
-// const submitButtonHandler = (e, travelersData) => {
-//   formValidationHelper(e, travelersData);
-// }
+// const getSingleTravelerData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers/???')
+//   .then(response => response.json())
+//   .then(data => data.???)
+//   .catch(error => console.log(`There was an error: ${error}`));
+//
+// const getTripsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips')
+//   .then(response => response.json())
+//   .then(data => data.trips)
+//   .catch(error => console.log(`There was an error: ${error}`));
+//
+// Promise.all([getTravelersData, getSingleTravelerData, getTripsData])
+//   .then(data => {
+//     travelersData = data[0];
+//     singleTravelerData = data[1];
+//     tripsData = data[2];
+//   })
 
-const formValidationHelper = (e, travelersData) => {
+const submitLoginInfoHelper = (e, travelersData) => {
   e.preventDefault();
+
   domUpdates.validateUser(e, travelersData);
 }
-
-
 
 
 
