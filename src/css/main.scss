@@ -18,7 +18,7 @@ body {
 }
 
 // loading-page
-.loading-message {
+.loading {
   @include font(1.5em);
   color: $antique-white;
   text-align: center;
