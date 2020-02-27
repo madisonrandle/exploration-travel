@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-
+let userId;
 
 const domUpdates = {
 
@@ -22,20 +22,22 @@ const domUpdates = {
       $('.content').html(`
         <h1>Welcome, Boss!</h1>
         `)
-    } 
+    }
   },
 
   validateUser: (e, travelersData) => {
-    domUpdates.validateAgencyUser(e);
     let foundTraveler = travelersData.find(user => {
       return $('.username').val() === `traveler${user.id}` && $('.password').val() === 'travel2020'
     })
+
     if (foundTraveler) {
+      userId = foundTraveler.id;
       $('.content').html(`
         <h1>Welcome, ${foundTraveler.name}!</h1>
         `)
     } else {
       domUpdates.showErrorMessage();
+      domUpdates.validateAgencyUser(e);
     }
   },
 
