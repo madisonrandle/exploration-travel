@@ -1,33 +1,9 @@
 import $ from 'jquery';
 import './css/main.scss';
 
-let here;
-let here;
-let here;
+const getTravelersData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
+  .then(response => response.json())
+  .then(travelersData => console.log(travelersData.travelers))
+  .catch(error => console.log(`There was an error: ${error}`));
 
-
-const someData = fetch('')
-  .then(someResponse => someResponse.json())
-  .then(someData => someData.here)
-  .catch(error => console.log('someData error'));
-
-const someData = fetch('')
-  .then(someResponse => someResponse.json())
-  .then(someData => someData.here)
-  .catch(error => console.log('someData error'));
-
-const someData = fetch('')
-  .then(someResponse => someResponse.json())
-  .then(someData => someData.here)
-  .catch(error => console.log('someData error'));
-
-Promise.all([])
-  .then(someData => {
-    here = someData[0];
-    here = someData[1];
-    here = someData[2];
-  })
-  .catch(error => {console.log('Something is amiss with promise all', error)});
-
-
-// //
+//
