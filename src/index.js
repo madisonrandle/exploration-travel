@@ -2,20 +2,25 @@ import $ from 'jquery';
 import './css/main.scss';
 import domUpdates from './domUpdates';
 
+let userId;
+
 const getTravelersData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
   .then(response => response.json())
   .then(travelersData => {
     domUpdates.showLogInForm(travelersData.travelers)
-    $('.submit-user-info').click((e) => submitLoginInfoHelper(e, travelersData.travelers));
+    $('.submit-user-info').click((e) => submitLoginInHelper(e, travelersData.travelers));
    // want to know why event listeners ^ wont work in domUpdates??
   })
   .catch(error => console.log(`There was an error: ${error}`));
 
-// const getSingleTravelerData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers/???')
-//   .then(response => response.json())
-//   .then(data => data.???)
-//   .catch(error => console.log(`There was an error: ${error}`));
-//
+const getSingleTravelerData = () => {
+  const url = 'https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers/' + userId;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.log(`There was an error: ${error}`));
+}
+
 // const getTripsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips')
 //   .then(response => response.json())
 //   .then(data => data.trips)
@@ -28,13 +33,11 @@ const getTravelersData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-trac
 //     tripsData = data[2];
 //   })
 
-const submitLoginInfoHelper = (e, travelersData) => {
+const submitLoginInHelper = (e, travelersData) => {
   e.preventDefault();
-
-  domUpdates.validateUser(e, travelersData);
+  userId = domUpdates.validateUser(e, travelersData);
+  getSingleTravelerData(travelersData);
 }
-
-
 
 
 //
