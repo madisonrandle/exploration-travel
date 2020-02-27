@@ -4,7 +4,7 @@ import $ from 'jquery';
 
 const domUpdates = {
 
-  showLogIn: (travelersData) => {
+  showLogInForm: (travelersData) => {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
@@ -13,21 +13,36 @@ const domUpdates = {
         <input class='password' type='password'></input>
         <button class='submit-user-info'>Plan Adventure!</button>
       </form>
+      <span class='invalidLoginMessage'></span>
       `)
   },
 
-  validateUser: (e) => {
-    e.preventDefault()
+  validateAgencyUser: (e) => {
     if ($('.username').val() === 'agency' && $('.password').val() === 'travel2020') {
-      // make landing page once user is validated as agency
+      $('.content').html(`
+        <h1>Welcome, Boss!</h1>
+        `)
+    } 
+  },
+
+  validateUser: (e, travelersData) => {
+    domUpdates.validateAgencyUser(e);
+    let foundTraveler = travelersData.find(user => {
+      return $('.username').val() === `traveler${user.id}` && $('.password').val() === 'travel2020'
+    })
+    if (foundTraveler) {
+      $('.content').html(`
+        <h1>Welcome, ${foundTraveler.name}!</h1>
+        `)
+    } else {
+      domUpdates.showErrorMessage();
     }
+  },
+
+  showErrorMessage: () => {
+    $('.invalidLoginMessage').text('Invalid Username or Password')
   }
-
-  //username: agency
-  // password: travel2020
-
 }
-
 
 export default domUpdates;
 //
