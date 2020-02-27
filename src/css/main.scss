@@ -7,21 +7,24 @@
 * {
   @include margin(0, 0, 0, 0);
   @include padding(0, 0, 0, 0);
-  background-color: $coffee;
   box-sizing: border-box;
   font-family: 'Spartan', sans-serif;
   scroll-behavior: smooth;
 }
 
-// body {
-//
-// }
+body {
+  background: linear-gradient(0deg, $forest 0%, rgba(179,125,80,0.11668417366946782) 50%, $peanut 100%),
+  url('../images/adventure.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 750px;
+}
 
 // loading message styling
 
 .loading-message {
   @include font(1.5em);
-  color: $peanut;
+  color: $antique-white;
   text-align: center;
 }
   // loading icon while fetching data
