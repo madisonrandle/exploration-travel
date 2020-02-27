@@ -20,14 +20,13 @@ body {
   height: 750px;
 }
 
-// loading message styling
-
+// loading-page
 .loading-message {
   @include font(1.5em);
   color: $antique-white;
   text-align: center;
 }
-  // loading icon while fetching data
+  // loading icon (while fetching data)
 .lds-spinner {
   color: official;
   display: inline-block;
