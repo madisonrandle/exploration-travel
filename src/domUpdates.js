@@ -1,8 +1,8 @@
 import $ from 'jquery';
 
+let foundTraveler;
 const domUpdates = {
-
-  showLogInForm: (travelersData) => {
+  showLogInForm: () => {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
@@ -15,34 +15,48 @@ const domUpdates = {
       `)
   },
 
-  validateAgencyUser: (e) => {
-    if ($('.username').val() === 'agency' && $('.password').val() === 'travel2020') {
-      $('.content').html(`
-        <h1>Welcome, Boss!</h1>
-        `)
-    }
-  },
-
-  validateUser: (e, travelersData) => {
-    let foundTraveler = travelersData.find(user => {
+  validateUser: (e, travelersData, tripsData, destinationsData) => {
+    foundTraveler = travelersData.find(user => {
       return $('.username').val() === `traveler${user.id}` && $('.password').val() === 'travel2020'
     })
 
     if (foundTraveler) {
-      $('.content').html(`
-        <h1>Welcome, ${foundTraveler.name}!</h1>
-        `)
+      domUpdates.showTravelerAccessPage(tripsData, destinationsData);
       return foundTraveler.id;
     } else if ($('.username').val() === 'agency' && $('.password').val() === 'travel2020') {
-      domUpdates.validateAgencyUser(e);
+      domUpdates.showAgencyAccessPage(tripsData);
     } else {
       domUpdates.showErrorMessage();
     }
   },
 
+  showAgencyAccessPage: (tripsData) => {
+    $('.content').html(`
+      <h1>Welcome, Boss!</h1>
+    `)
+  },
+
+  showTravelerAccessPage: (tripsData, destinationsData) => {
+    $('.content').html(`
+      <h1>Welcome, ${foundTraveler.name}!</h1>
+    `)
+    domUpdates.getAllTrips(tripsData, destinationsData);
+  },
+
+  getAllTrips: (tripsData, destinationsData) => {
+    return destinationsData.reduce((destinations, destination) => {
+      tripsData.forEach(trip => {
+        if (foundTraveler.id === trip.userID && destination.id === trip.destinationID) {
+          destinations.push(destination)
+        }
+      });
+      return destinations;
+    }, []);
+  },
+
   showErrorMessage: () => {
     $('.invalidLoginMessage').text('Invalid Username or Password');
-  }
+  },
 }
 
 
