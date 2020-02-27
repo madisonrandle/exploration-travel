@@ -1,7 +1,5 @@
 import $ from 'jquery';
 
-let userId;
-
 const domUpdates = {
 
   showLogInForm: (travelersData) => {
@@ -31,20 +29,22 @@ const domUpdates = {
     })
 
     if (foundTraveler) {
-      userId = foundTraveler.id;
       $('.content').html(`
         <h1>Welcome, ${foundTraveler.name}!</h1>
         `)
+      return foundTraveler.id;
+    } else if ($('.username').val() === 'agency' && $('.password').val() === 'travel2020') {
+      domUpdates.validateAgencyUser(e);
     } else {
       domUpdates.showErrorMessage();
-      domUpdates.validateAgencyUser(e);
     }
   },
 
   showErrorMessage: () => {
-    $('.invalidLoginMessage').text('Invalid Username or Password')
+    $('.invalidLoginMessage').text('Invalid Username or Password');
   }
 }
+
 
 export default domUpdates;
 //
