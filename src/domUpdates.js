@@ -4,7 +4,7 @@ let foundTraveler;
 let totalCost;
 
 const domUpdates = {
-  showLogInForm: () => { //
+  showLogInForm: () => {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
@@ -17,7 +17,7 @@ const domUpdates = {
     `)
   },
 
-  // 1
+  // 1 - domUpdates
   validateUser: (e, travelersData, tripsData, destinationsData) => {
     foundTraveler = travelersData.find(user => {
       return $('.username').val() === `traveler${user.id}` && $('.password').val() === 'travel2020'
@@ -29,16 +29,16 @@ const domUpdates = {
     $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.showAgencyAccessPage(travelersData, tripsData) : domUpdates.showErrorMessage();
   },
 
-  // 2.aAccess
+  // 2.aAccess - domUpdates
   showAgencyAccessPage: (travelersData, tripsData) => {
     $('.content').html(`
       <h1>Welcome, Boss!</h1>
     `)
-    domUpdates.getNewTripRequests(travelersData, tripsData);
+    domUpdates.getNewTripRequests(travelersData, tripsData); //
   },
 
   // 2.aAccess
-  getNewTripRequests: (travelersData, tripsData) => {
+  getNewTripRequests: (travelersData, tripsData) => { // 
     console.log(travelersData);
     // if userid from tripsData mataches id from travelers data then get the name and any info you want the agency to see from the requested booking
     tripsData.forEach(trip => {
@@ -48,7 +48,7 @@ const domUpdates = {
     })
   },
 
-  // 2.tAccess
+  // 2.tAccess - domUpdates
   showTravelerAccessPage: (tripsData, destinationsData) => {
     domUpdates.getYearlyCostOfTrips(tripsData, destinationsData);
     let allTrips = domUpdates.getTravelerDesitinationsInfo(tripsData, destinationsData);
