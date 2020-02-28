@@ -26,14 +26,26 @@ const domUpdates = {
       domUpdates.showTravelerAccessPage(tripsData, destinationsData);
       return foundTraveler.id;
     }
-    $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.showAgencyAccessPage(tripsData) : domUpdates.showErrorMessage();
+    $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.showAgencyAccessPage(travelersData, tripsData) : domUpdates.showErrorMessage();
   },
 
   // 2.aAccess
-  showAgencyAccessPage: (tripsData) => {
+  showAgencyAccessPage: (travelersData, tripsData) => {
     $('.content').html(`
       <h1>Welcome, Boss!</h1>
     `)
+    domUpdates.getNewTripRequests(travelersData, tripsData);
+  },
+
+  // 2.aAccess
+  getNewTripRequests: (travelersData, tripsData) => {
+    console.log(travelersData);
+    // if userid from tripsData mataches id from travelers data then get the name and any info you want the agency to see from the requested booking
+    tripsData.forEach(trip => {
+      if (trip.status === 'pending') {
+
+      }
+    })
   },
 
   // 2.tAccess
@@ -91,7 +103,7 @@ const domUpdates = {
     return destinationsData.reduce((tripsCosts, destination) => {
       tripsData.reduce((cost, trip) => {
         if (foundTraveler.id === trip.userID && destination.id === trip.destinationID) {
-          cost += trip.duration * destination.estimatedLodgingCostPerDay;
+          cost += (trip.duration * destination.estimatedLodgingCostPerDay) + (trip.travelers * destination.estimatedFlightCostPerPerson);
           tripsCosts.push({cost: cost, date: trip.date})
         }
         return cost;
