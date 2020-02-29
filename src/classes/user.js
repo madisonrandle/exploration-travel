@@ -25,10 +25,6 @@ class User {
       $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.getAgentAccess(this.travelers, this.trips, this.destinations, this.today) : domUpdates.showErrorMessage();
     }
   };
-
-
-
-
 }
 
 export default User;
