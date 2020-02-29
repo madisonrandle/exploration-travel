@@ -3,6 +3,8 @@ import domUpdates from '../domUpdates';
 
 let traveler;
 let foundTraveler;
+let finalObj;
+let newProp;
 
 class User {
   constructor (travelers, trips, destinations, today) {
@@ -18,7 +20,6 @@ class User {
       return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020'
     });
     if (foundTraveler) {
-
       domUpdates.getTravelerAccess(this.travelers, this.trips, this.destinations, foundTraveler);
       return foundTraveler.id;
     } else {
@@ -27,8 +28,44 @@ class User {
   };
 
   getTripsThisYear() {
-    return this.trips.filter(el => el.date.includes('2020/'));
+    return this.trips.filter(trip => trip.date.includes('2020/'));
   };
-}
+
+  calculateYearlyRevenue() {
+    return this.calculateAgencyFee().reduce((yearlyRevenue, destination) => {
+      yearlyRevenue += destination.revenue;
+      return yearlyRevenue;
+    }, 0);
+  }
+
+  calculateAgencyFee() {
+    return this.calculateYearlyTravelersTripExpenses().filter(obj => {
+      return obj['revenue'] = obj.totalExpenses * .10;
+    });
+  };
+
+  calculateYearlyTravelersTripExpenses() {
+    return this.getTripInfo().reduce((acc, tripObj) => {
+      tripObj['totalExpenses'] = 0;
+      tripObj.trips.forEach(trip => {
+        let flightCost = trip.travelers * tripObj.destination.estimatedFlightCostPerPerson;
+        let lodgingCost = trip.duration * tripObj.destination.estimatedLodgingCostPerDay;
+        newProp = flightCost + lodgingCost;
+      });
+      tripObj.totalExpenses += newProp;
+      acc.push(tripObj)
+      return acc;
+    }, []);
+  };
+
+  getTripInfo() {
+    return this.destinations.map(destination => {
+      finalObj = { destination: destination, trips: ''}
+      let trip = this.getTripsThisYear().filter(trip => destination.id === trip.destinationID);
+      finalObj.trips = trip;
+      return finalObj;
+    });
+  };
+};
 
 export default User;
