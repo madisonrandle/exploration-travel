@@ -20,10 +20,9 @@ class User {
     if (foundTraveler) {
 
       domUpdates.getTravelerAccess(this.travelers, this.trips, this.destinations, foundTraveler);
-
       return foundTraveler.id;
     } else {
-      $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.getAgentAccess() : domUpdates.showErrorMessage();
+      $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.getAgentAccess(this.travelers, this.trips, this.destinations, this.today) : domUpdates.showErrorMessage();
     }
   };
 
