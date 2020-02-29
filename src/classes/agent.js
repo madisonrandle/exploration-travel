@@ -19,6 +19,10 @@ class Agent extends User {
       return finalObj;
     });
   };
+
+  // getYearlyRevenue() {
+  //
+  // };
 }
 
 export default Agent;
