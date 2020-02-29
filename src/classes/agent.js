@@ -1,17 +1,13 @@
 import User from './user';
-import Traveler from './traveler';
-// import Trip from './trip';
-
-let foundTraveler;
 
 class Agent extends User {
-  constructor(user) {
-    super(user);
+  constructor(travelers, trips, destinations, today) {
+    super(travelers, trips, destinations, today);
 
   };
 
-  huckYou() {
-    // console.log();
+  yuh() {
+    console.log(this);
   }
 }
 
