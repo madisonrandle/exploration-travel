@@ -1,9 +1,12 @@
 import $ from 'jquery';
 import Traveler from './classes/traveler';
+import Agent from './classes/agent';
+
 import moment from 'moment';
 
 let foundTraveler;
 let traveler;
+let agent;
 let today;
 
 const domUpdates = {
@@ -13,7 +16,7 @@ const domUpdates = {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
-        <input class='username' type='text' value='traveler44'></input>
+        <input class='username' type='text' value='agency'></input>
         <label>PASSWORD:</label>
         <input class='password' type='password' value='travel2020'></input>
         <button class='submit-user-info'>Plan Adventure!</button>
@@ -24,7 +27,10 @@ const domUpdates = {
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
 
-  getAgentAccess: () => {
+  getAgentAccess: (travelers, trips, destinations, today) => {
+    agent = new Agent(travelers, trips, destinations, today);
+    console.log(agent.yuh())
+
     $('.content').html(`
       <h1>Agency Access</h1>
     `)
