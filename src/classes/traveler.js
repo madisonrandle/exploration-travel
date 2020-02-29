@@ -13,7 +13,6 @@ class Traveler extends User {
       this.trips.find(trip => (this.id === trip.userID && destination.id === trip.destinationID) && trips.push(destination));
       return trips;
     }, []);
-
   };
 
   getYearlyTripExpenses() {
