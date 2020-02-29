@@ -14,7 +14,7 @@ const domUpdates = {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
-        <input class='username' type='text' value='traveler44'></input>
+        <input class='username' type='text' value='agency'></input>
         <label>PASSWORD:</label>
         <input class='password' type='password' value='travel2020'></input>
         <button class='submit-user-info'>Plan Adventure!</button>
@@ -26,11 +26,11 @@ const domUpdates = {
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     agent = new Agent(travelers, trips, destinations, today);
-    console.log(agent.getYearlyRevenue());
+    let yearlyRevenue = foundTraveler.calculateYearlyRevenue().toLocaleString("en-US", {style:"currency", currency:"USD"});
     $('.content').html(`
       <h1></h1>
       <h2>Trip Requests:</h2>
-      <p>Total Revenue this Year: ${"$$$"}</p>
+      <p>Total Revenue this Year: ${yearlyRevenue}</p>
       <ul class='list'></ul>
     `)
     // TAKE <br> OUT WHEN STYLING'
