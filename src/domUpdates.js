@@ -14,7 +14,7 @@ const domUpdates = {
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
-        <input class='username' type='text' value='agency'></input>
+        <input class='username' type='text' value='traveler44'></input>
         <label>PASSWORD:</label>
         <input class='password' type='password' value='travel2020'></input>
         <button class='submit-user-info'>Plan Adventure!</button>
@@ -26,9 +26,11 @@ const domUpdates = {
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     agent = new Agent(travelers, trips, destinations, today);
+    console.log(agent.getYearlyRevenue());
     $('.content').html(`
       <h1></h1>
       <h2>Trip Requests:</h2>
+      <p>Total Revenue this Year: ${"$$$"}</p>
       <ul class='list'></ul>
     `)
     // TAKE <br> OUT WHEN STYLING'
@@ -44,13 +46,14 @@ const domUpdates = {
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
-    let travelerTrips = traveler.getMyTrips();
+    let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style:"currency", currency:"USD"});
+    let travelerTrips = traveler.getMyTripDestinations();
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
       <h1>Welcome ${splitName[0]}!</h1>
       <h2>Your Adventures:</h2>
       <ul class='list'></ul>
-      <p class='total-cost'>You've spent ${traveler.calculateyearlyTripExpenses()} on trips this year.</p>
+      <p class='total-cost'>You've spent ${yearlyTripExpenses} on trips this year.</p>
     `);
     travelerTrips.map(destination => {
       $('.list').append(`<li>${destination.destination}
