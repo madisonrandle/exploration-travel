@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import Traveler from './classes/traveler';
 import Agent from './classes/agent';
-
 import moment from 'moment';
 
 let foundTraveler;
@@ -10,7 +9,6 @@ let agent;
 let today;
 
 const domUpdates = {
-
   showLogInForm: (user) => {
     foundTraveler = user
     $('.content').html(`
@@ -23,23 +21,30 @@ const domUpdates = {
       </form>
       <span class='invalidLoginMessage'></span>
     `);
-
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     agent = new Agent(travelers, trips, destinations, today);
-    console.log(agent.yuh())
-
     $('.content').html(`
-      <h1>Agency Access</h1>
+      <h1></h1>
+      <h2>Trip Requests:</h2>
+      <ul class='list'></ul>
     `)
+    // TAKE <br> OUT WHEN STYLING'
+    agent.getPendingTripRequests().map(el => {
+      $('.list').append(`<li>
+        Name: ${el.name} <br>
+        Date: ${el.date} <br>
+        Number of Travelers: ${el.numTrav} <br>
+        Destination: ${el.destination}
+        </li>`);
+    });
   },
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
     let travelerTrips = traveler.getMyTrips();
-
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
       <h1>Welcome ${splitName[0]}!</h1>
@@ -56,7 +61,6 @@ const domUpdates = {
   showErrorMessage: () => {
     $('.invalidLoginMessage').text('Invalid Username or Password');
   },
-
 }
 
 export default domUpdates;
