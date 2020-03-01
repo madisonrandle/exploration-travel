@@ -1,121 +1,56 @@
 import $ from 'jquery';
+import Traveler from './classes/traveler';
+import moment from 'moment';
 
 let foundTraveler;
-let totalCost;
+let traveler;
+let today;
 
 const domUpdates = {
-  showLogInForm: () => { //
+
+  showLogInForm: (user) => {
+    foundTraveler = user
     $('.content').html(`
       <form>
         <label>USERNAME:</label>
-        <input class='username' type='text'></input>
+        <input class='username' type='text' value='traveler44'></input>
         <label>PASSWORD:</label>
-        <input class='password' type='password'></input>
+        <input class='password' type='password' value='travel2020'></input>
         <button class='submit-user-info'>Plan Adventure!</button>
       </form>
       <span class='invalidLoginMessage'></span>
+    `);
+
+    $('.submit-user-info').click((e) => user.validateUser(e));
+  },
+
+  getAgentAccess: () => {
+    $('.content').html(`
+      <h1>Agency Access</h1>
     `)
   },
 
-  // 1
-  validateUser: (e, travelersData, tripsData, destinationsData) => {
-    foundTraveler = travelersData.find(user => {
-      return $('.username').val() === `traveler${user.id}` && $('.password').val() === 'travel2020'
-    });
-    if (foundTraveler) {
-      domUpdates.showTravelerAccessPage(tripsData, destinationsData);
-      return foundTraveler.id;
-    }
-    $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.showAgencyAccessPage(travelersData, tripsData) : domUpdates.showErrorMessage();
-  },
+  getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
+    traveler = new Traveler(travelers, trips, destinations, foundTraveler);
+    let travelerTrips = traveler.getMyTrips();
 
-  // 2.aAccess
-  showAgencyAccessPage: (travelersData, tripsData) => {
+    let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
-      <h1>Welcome, Boss!</h1>
-    `)
-    domUpdates.getNewTripRequests(travelersData, tripsData);
-  },
-
-  // 2.aAccess
-  getNewTripRequests: (travelersData, tripsData) => {
-    console.log(travelersData);
-    // if userid from tripsData mataches id from travelers data then get the name and any info you want the agency to see from the requested booking
-    tripsData.forEach(trip => {
-      if (trip.status === 'pending') {
-
-      }
-    })
-  },
-
-  // 2.tAccess
-  showTravelerAccessPage: (tripsData, destinationsData) => {
-    domUpdates.getYearlyCostOfTrips(tripsData, destinationsData);
-    let allTrips = domUpdates.getTravelerDesitinationsInfo(tripsData, destinationsData);
-    totalCost = totalCost.toLocaleString("en-US", {style:"currency", currency:"USD"});
-    $('.content').html(`
-      <h1>Welcome, ${foundTraveler.name}!</h1>
+      <h1>Welcome ${splitName[0]}!</h1>
       <h2>Your Adventures:</h2>
       <ul class='list'></ul>
-      <p class='total-cost'>You've spent ${totalCost} on trips this year.</p>
-    `)
-    allTrips.map(destination => {
-      $('.list').append(`<li>${destination.destination}</li>`);
+      <p class='total-cost'>You've spent ${traveler.calculateyearlyTripExpenses()} on trips this year.</p>
+    `);
+    travelerTrips.map(destination => {
+      $('.list').append(`<li>${destination.destination}
+        <img src=${destination.image}></li>`);
     });
-  },
-
-  // 3.tAccess
-  getTravelerDesitinationsInfo: (tripsData, destinationsData) => {
-    return domUpdates.getAllTrips(tripsData, destinationsData).reduce((prices, travelDestination) => {
-      prices.push({destination: `${travelDestination.destination}`, lodgingCost: `${travelDestination.estimatedLodgingCostPerDay}`, flightCost: `${travelDestination.estimatedFlightCostPerPerson}`})
-      return prices;
-    }, []);
-  },
-
-  // 4.tAccess
-  getAllTrips: (tripsData, destinationsData) => {
-    let destinations = destinationsData.reduce((trips, destination) => {
-      tripsData.find(trip => {
-        if (foundTraveler.id === trip.userID && destination.id === trip.destinationID) {
-          trips.push(destination)
-        }
-      });
-      return trips;
-    }, []);
-    domUpdates.getYearlyCostOfTrips(tripsData, destinationsData);
-    return destinations
-  },
-
-  // 5.tAccess
-  getYearlyCostOfTrips: (tripsData, destinationsData) => {
-    totalCost = domUpdates.getCostInfo(tripsData, destinationsData).reduce((yearlyCost, costInfo) => {
-      if (costInfo.date.includes('2020/')) {
-        let tax = costInfo.cost * .10;
-        yearlyCost += costInfo.cost + tax;
-      }
-      return yearlyCost;
-    }, 0);
-    return totalCost;
-  },
-
-  // 6.tAccess
-  getCostInfo: (tripsData, destinationsData) => {
-    return destinationsData.reduce((tripsCosts, destination) => {
-      tripsData.reduce((cost, trip) => {
-        if (foundTraveler.id === trip.userID && destination.id === trip.destinationID) {
-          cost += (trip.duration * destination.estimatedLodgingCostPerDay) + (trip.travelers * destination.estimatedFlightCostPerPerson);
-          tripsCosts.push({cost: cost, date: trip.date})
-        }
-        return cost;
-      }, 0);
-      return tripsCosts;
-    }, []);
   },
 
   showErrorMessage: () => {
     $('.invalidLoginMessage').text('Invalid Username or Password');
   },
+
 }
 
 export default domUpdates;
-//

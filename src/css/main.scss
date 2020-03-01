@@ -18,6 +18,11 @@ body {
   height: 750px;
 }
 
+img {
+  height: 200px;
+  width: 200px;
+}
+
 // loading-page
 .loading {
   @include font(1.5em);
