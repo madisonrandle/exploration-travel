@@ -3,10 +3,9 @@ import Traveler from './classes/traveler';
 import Agent from './classes/agent';
 import moment from 'moment';
 
-let foundTraveler;
-let traveler;
-let agent;
-let today;
+let foundTraveler, traveler, agent, today;
+
+// ^ be sure you're using the 'today' variable and property before submitting project
 
 const domUpdates = {
   showLogInForm: (user) => {
@@ -26,15 +25,16 @@ const domUpdates = {
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     agent = new Agent(travelers, trips, destinations, today);
-    let yearlyRevenue = foundTraveler.calculateYearlyRevenue().toLocaleString("en-US", {style:"currency", currency:"USD"});
+    let yearlyRevenue = agent.calculateYearlyRevenue().toLocaleString("en-US", {style: "currency", currency: "USD"});
     $('.content').html(`
       <h1></h1>
-      <h2>Trip Requests:</h2>
-      <p>Total Revenue this Year: ${yearlyRevenue}</p>
+      <h2>Pending Trip Requests:</h2>
       <ul class='list'></ul>
+      <p>Total Revenue this Year: ${yearlyRevenue}</p>
     `)
     // TAKE <br> OUT WHEN STYLING'
-    agent.getPendingTripRequests().map(el => {
+    console.log(agent.getPendingTripRequests());
+    agent.getPendingTripRequests().forEach(el => {
       $('.list').append(`<li>
         Name: ${el.name} <br>
         Date: ${el.date} <br>
@@ -46,11 +46,11 @@ const domUpdates = {
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
-    let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style:"currency", currency:"USD"});
+    let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
     let travelerTrips = traveler.getMyTripDestinations();
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
-      <h1>Welcome ${splitName[0]}!</h1>
+      <h1>Welcome, ${splitName[0]}!</h1>
       <h2>Your Adventures:</h2>
       <ul class='list'></ul>
       <p class='total-cost'>You've spent ${yearlyTripExpenses} on trips this year.</p>
