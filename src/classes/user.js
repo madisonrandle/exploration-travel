@@ -1,10 +1,7 @@
 import $ from 'jquery';
 import domUpdates from '../domUpdates';
 
-let traveler;
 let foundTraveler;
-let finalObj;
-let newProp;
 
 class User {
   constructor (travelers, trips, destinations, today) {
@@ -17,7 +14,7 @@ class User {
   validateUser(e) {
     e.preventDefault();
     foundTraveler = this.travelers.find(traveler => {
-      return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020'
+      return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020';
     });
     if (foundTraveler) {
       domUpdates.getTravelerAccess(this.travelers, this.trips, this.destinations, foundTraveler);
@@ -30,21 +27,9 @@ class User {
   getTripsThisYear() {
     return this.trips.filter(trip => trip.date.includes('2020/'));
   };
-
-  calculateYearlyRevenue() {
-    return this.calculateAgencyFee().reduce((yearlyRevenue, destination) => {
-      yearlyRevenue += destination.revenue;
-      return yearlyRevenue;
-    }, 0);
-  }
-
-  calculateAgencyFee() {
-    return this.calculateYearlyTravelersTripExpenses().filter(obj => {
-      return obj['revenue'] = obj.totalExpenses * .10;
-    });
-  };
-
+  
   calculateYearlyTravelersTripExpenses() {
+    let newProp;
     return this.getTripInfo().reduce((acc, tripObj) => {
       tripObj['totalExpenses'] = 0;
       tripObj.trips.forEach(trip => {
@@ -60,7 +45,7 @@ class User {
 
   getTripInfo() {
     return this.destinations.map(destination => {
-      finalObj = { destination: destination, trips: ''}
+      let finalObj = { destination: destination, trips: ''}
       let trip = this.getTripsThisYear().filter(trip => destination.id === trip.destinationID);
       finalObj.trips = trip;
       return finalObj;
