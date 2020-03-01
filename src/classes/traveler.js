@@ -29,7 +29,6 @@ class Traveler extends User {
     });
     return totalTripExpense.reduce((totalYearlyTripCost, tripCost) => totalYearlyTripCost += tripCost);
   };
-
 }
 
 export default Traveler;
