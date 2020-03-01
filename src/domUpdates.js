@@ -9,16 +9,27 @@ let foundTraveler, traveler, agent, today;
 
 const domUpdates = {
   showLogInForm: (user) => {
-    foundTraveler = user
+    foundTraveler = user;
     $('.content').html(`
+      <p class="travel-quote">Wanderlust. A strong desire to wander and explore the world.</p>
+      <h1 class="title">Exploration Travel</h1>
+      <hr class="line">
+    `);
+    $('.form-container').append(`
       <form>
-        <label>USERNAME:</label>
-        <input class='username' type='text' value='agency'></input>
-        <label>PASSWORD:</label>
-        <input class='password' type='password' value='travel2020'></input>
-        <button class='submit-user-info'>Plan Adventure!</button>
+        <section class="travel-image-container">
+          <img class="travel-image" src="../images/travel-background.jpg" alt="">
+        </section>
+        <section class="login-container">
+          <h3 class="login-title">Sign In</h3>
+          <label></label>
+          <input class='username' type='text'onfocus="this.value=''" value='username'></input>
+          <label></label>
+          <input class='password' onfocus="this.value='', this.type='password'" value='password'></input>
+          <button class='submit-user-info'>Submit</button>
+          <span class='invalid-login-message'><span class="placeholder">Placeholder</span></span>
+        </section>
       </form>
-      <span class='invalidLoginMessage'></span>
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
@@ -27,13 +38,15 @@ const domUpdates = {
     agent = new Agent(travelers, trips, destinations, today);
     let yearlyRevenue = agent.calculateYearlyRevenue().toLocaleString("en-US", {style: "currency", currency: "USD"});
     $('.content').html(`
-      <h1></h1>
-      <h2>Pending Trip Requests:</h2>
-      <ul class='list'></ul>
-      <p>Total Revenue this Year: ${yearlyRevenue}</p>
+      <section class="agent-access">
+        <h1></h1>
+        <h2>Pending Trip Requests:</h2>
+        <ul class='list'></ul>
+        <p>Revenue this Year: ${yearlyRevenue}</p>
+      </section>
     `)
     // TAKE <br> OUT WHEN STYLING'
-    console.log(agent.getPendingTripRequests());
+    console.log(foundTraveler.getDates());
     agent.getPendingTripRequests().forEach(el => {
       $('.list').append(`<li>
         Name: ${el.name} <br>
@@ -50,6 +63,8 @@ const domUpdates = {
     let travelerTrips = traveler.getMyTripDestinations();
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
+      <p>EVERYTHING IS PERSONAL. INCLUDING THIS BLOG.</p>
+      <h1>Travel Tracker</h1> <br>
       <h1>Welcome, ${splitName[0]}!</h1>
       <h2>Your Adventures:</h2>
       <ul class='list'></ul>
@@ -62,7 +77,7 @@ const domUpdates = {
   },
 
   showErrorMessage: () => {
-    $('.invalidLoginMessage').text('Invalid Username or Password');
+    $('.invalid-login-message').text('Invalid Username or Password');
   },
 }
 
