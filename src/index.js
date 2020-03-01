@@ -5,6 +5,7 @@ import User from './classes/user';
 import moment from 'moment';
 
 // console.log('timskiez', moment()._d);
+// console.log(Date.now());
 
 let today, user, id;
 
@@ -40,7 +41,6 @@ Promise.all([getTravelersData, getTripsData, getDestinationsData])
     let getDestinations = data[2];
     user = new User(getTravelers, getTrips, getDestinations, today);
     domUpdates.showLogInForm(user);
-
   })
   .catch(error => console.log(`There was an error: ${error}`));
 
