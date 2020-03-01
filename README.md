@@ -9,4 +9,4 @@
 ### Login page animation
 
 ![Login page animation](https://media.giphy.com/media/gJ2MV9BBeHKO9Finn4/giphy.gif)
-![Login page animation](https://media.giphy.com/media/Kanoatq7Zsf3ZnggTH/giphy.gif)
+![Login page animation](https://media.giphy.com/media/QsZoULtPLCfjzA4fbV/giphy.gif)
