@@ -58,13 +58,12 @@ const domUpdates = {
   },
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
+    $('.form-container').html('');
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
     let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
     let travelerTrips = traveler.getMyTripDestinations();
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
-      <p>EVERYTHING IS PERSONAL. INCLUDING THIS BLOG.</p>
-      <h1>Travel Tracker</h1> <br>
       <h1>Welcome, ${splitName[0]}!</h1>
       <h2>Your Adventures:</h2>
       <ul class='list'></ul>
