@@ -22,8 +22,10 @@ class Traveler extends User {
   calculateYearlyTripExpenses() {
     let totalTripExpense = this.getMyTripDestinations().map(destination => {
       let trip = this.getMyTrips().find(trip => destination.id === trip.destinationID);
+
       let flightCost = trip.travelers * destination.estimatedFlightCostPerPerson;
-      let lodgingCost = trip.duration * destination.estimatedLodgingCostPerDay;
+      let lodgingCostPerPerson = trip.duration * destination.estimatedLodgingCostPerDay;
+      let lodgingCost = trip.travelers * lodgingCostPerPerson;
       let agencyFee = (flightCost + lodgingCost) * .10;
       return flightCost + lodgingCost + agencyFee;
     });
