@@ -2,7 +2,7 @@ import $ from 'jquery';
 import domUpdates from '../domUpdates';
 import moment from 'moment';
 
-let foundTraveler;
+let foundTraveler, startDate;
 
 class User {
   constructor (travelers, trips, destinations, today) {
@@ -14,7 +14,6 @@ class User {
 
   validateUser(e) {
     e.preventDefault();
-    
 
     foundTraveler = this.travelers.find(traveler => {
       return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020';
@@ -56,66 +55,31 @@ class User {
   };
 
   getDates() {
-    // let dates = [];
-    return this.getTripsThisYear().forEach(trip => {
-      // console.log(trip);
+    let currentTrips = this.getTripsThisYear().filter(trip => {
+      let today = new Date();
+      let start = new Date(trip.date).toDateString();
+      let end = moment(start).add(trip.duration, 'days').toDate().toDateString();
+      let m = moment(today, 'YYYY-DD-MM').format('l');
+      let result = moment(today).isBetween(start, end);
+      return result;
+      });
+    return currentTrips.reduce((numTravelers, trip) => {
+      typeof(trip.travelers) === 'string' ? numTravelers += parseInt(trip.travelers) : numTravelers += trip.travelers;
+      return numTravelers;
+    }, 0);
 
-      // startdate = "20.03.2014";
-      // var new_date =
-      //
-      // alert(new_date);
-
-      // let today = new Date();
-      // console.log('today', today);
-      // let dd = String(today.getDate()).padStart(2, '0');
-      //
-      // let mm = String(today.getMonth() + 1).padStart(2, '0');
-      //
-      // let yyyy = today.getFullYear();
-
-      // today = yyyy + '/' + dd + '/' + mm;
-      let start = moment(new Date(trip.date))
-      let end = moment(start).add(trip.duration, 'days').toDate()
-      console.log('start: ', start, 'end: ', end, 'today: ', today);
-      // let today = new Date()
-      let result = moment(today).isBetween(end, start, 'days')
-      console.log(result);
-    });
-    };
+      // method if i need to show the trips happening on current day
+      // let finalObj;
+      // return didIGetIt = this.destinations.reduce((acc, destination) => {
+      //   let trip = currentTrips.filter(currentTrip => destination.id === currentTrip.destinationID);
+      //   if (trip.length !== 0) {
+      //     finalObj = { destination: destination, trips: ''}
+      //     finalObj.trips = trip;
+      //     acc.push(finalObj)
+      //   }
+      //   return acc;
+      // }, []);
   };
-
-//
-// let today = new Date();
-// let dd = String(today.getDate()).padStart(2, '0');
-// let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-// let yyyy = today.getFullYear();
-// today = yyyy + '/' + dd + '/' + mm;
-//
-// let end = 'endDate yyyy/dd/mm'
-// let start = 'startDate yyyy/dd/mm'
-// let result = moment(today).isBetween(end, start, 'days')
-
-
-//   getDates(startDate, endDate) {
-//     let dates = [];
-//     let currentDate = startDate;
-//     let addDays = (days) => {
-//       let date = new Date(this.valueOf());
-//       date.setDate(date.getDate() + days);
-//       return date;
-//     };
-//     while (currentDate <= endDate) {
-//       dates.push(currentDate);
-//       currentDate = allDays.call(currentDate, 1);
-//     }
-//     return dates;
-//   };
-//
-// //call getDates method
-// let dates = getDates(new Date(`${'traveler start date'}`), new Date(`${'traveler end date'}`));
-// // let dates = getDates(new Date(2013,10,22), new Date(2013,11,25));
-// dates.forEach(function(date) {
-//   console.log(date);
-// });
+};
 
 export default User;
