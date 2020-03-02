@@ -20,9 +20,9 @@
 
 ## App Screenshots
 ### Login page
-[![Screen-Shot-2020-03-01-at-3-32-33-PM.png]([![Screen-Shot-2020-03-01-at-9-36-37-PM.png])(https://i.postimg.cc/T2LTY4k7/Screen-Shot-2020-03-01-at-9-36-37-PM.png)](https://postimg.cc/jCbpMZYP))
+[![Login Page](https://i.postimg.cc/T2LTY4k7/Screen-Shot-2020-03-01-at-9-36-37-PM.png)](https://postimg.cc/jCbpMZYP)
 ### User Page
-[![Screen-Shot-2020-03-01-at-7-03-18-PM.png](https://i.postimg.cc/t4jwbZ6C/Screen-Shot-2020-03-01-at-7-03-18-PM.png)](https://postimg.cc/crFXMJTV)
+[![Login Page](https://i.postimg.cc/t4jwbZ6C/Screen-Shot-2020-03-01-at-7-03-18-PM.png)](https://postimg.cc/crFXMJTV)
 
 ## Animation
 ### Login Page Animation
