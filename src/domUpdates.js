@@ -18,8 +18,11 @@ const domUpdates = {
     $('.form-container').append(`
       <form>
         <section class="travel-image-container">
-          <img class="travel-image" src="../images/travel-background.jpg" alt="">
+
+
+
         </section>
+
         <section class="login-container">
           <h3 class="login-title">Sign In</h3>
           <label></label>
@@ -33,7 +36,10 @@ const domUpdates = {
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
-  // code for when you turn project in
+  // code for homepage image
+    // <img class="travel-image" src="./images/exploration.jpg" alt="human walking away into a desert"/>
+
+  // code when you turn project in to load page with 'password' & 'username'
   //<input class='password' onfocus="this.value='', this.type='password'" value='traveler2020'></input>
 
   getAgentAccess: (travelers, trips, destinations, today) => {
@@ -46,15 +52,12 @@ const domUpdates = {
         <h1 class="welcome-message">Welcome, Agent Khalid</h1>
         <hr class="traveler-access-line">
         <p class="agent-subtitle">Revenue this Year: ${yearlyRevenue}</p>
+        <p class="agent-subtitle">Number of Travelers Today: ${foundTraveler.getDates()}</p>
         <h2 class="agent-access-page-subheader">Pending Trip Requests:</h2>
-
         <ul class='list'></ul>
-
-
       </section>
     `)
-    // TAKE <br> OUT WHEN STYLING'
-    // console.log(foundTraveler.getDates());
+
     agent.getPendingTripRequests().map(el => {
       $('.list').append(`
         <section class="trip-request-wrapper">
