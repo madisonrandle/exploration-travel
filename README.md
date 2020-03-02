@@ -30,11 +30,11 @@
 
 ### Login Page Animation
 
-[![Login page animation](https://media.giphy.com/media/ZdT8Abpw6v4pxmbqq8/giphy.gif)
+![Login page animation](https://media.giphy.com/media/ZdT8Abpw6v4pxmbqq8/giphy.gif)
 
-[![Login page animation](https://media.giphy.com/media/LShrHdO2LUolr1PqOj/giphy.gif)
+![Login page animation](https://media.giphy.com/media/LShrHdO2LUolr1PqOj/giphy.gif)
 
 ### User Page Animation
 
-[![Login page animation](https://media.giphy.com/media/jtngmrWscnGiq8ABit/giphy.gif)
+![Login page animation](https://media.giphy.com/media/jtngmrWscnGiq8ABit/giphy.gif)
 
