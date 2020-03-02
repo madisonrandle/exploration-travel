@@ -20,8 +20,9 @@
 
 ## App Screenshots
 ### Login page
-![Login Page](https://i.postimg.cc/t4jwbZ6C/Screen-Shot-2020-03-01-at-7-03-18-PM.png)
+
 ### User Page
+![Login Page](https://i.postimg.cc/t4jwbZ6C/Screen-Shot-2020-03-01-at-7-03-18-PM.png)
 
 ## Animation
 ### Login Page Animation
