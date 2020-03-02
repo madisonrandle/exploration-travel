@@ -39,7 +39,7 @@ Promise.all([getTravelersData, getTripsData, getDestinationsData])
     let getTravelers = data[0];
     let getTrips = data[1];
     let getDestinations = data[2];
-    user = new User(getTravelers, getTrips, getDestinations, today);
+    user = new User(getTravelers, getTrips, getDestinations, '2019/01/03');
     domUpdates.showLogInForm(user);
   })
   .catch(error => console.log(`There was an error: ${error}`));

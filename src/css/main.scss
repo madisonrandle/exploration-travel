@@ -34,22 +34,9 @@ body {
 
 .title {
   @include font(300%);
-  color: $dimgray;
   font-family: 'Playfair Display', sans-serif;
   margin-bottom: 2rem;
 }
-
-h1,
-h2 {
-  @include font(150%);
-  padding: .5rem;
-}
-
-img {
-  height: 200px;
-  width: 200px;
-}
-
 
 .form-container {
   display: flex;
@@ -115,7 +102,10 @@ label {
   width: 100%;
 }
 
-.submit-user-info {
+.submit-user-info,
+.book-trip,
+.aprove-button,
+.delete-button {
   @include font(1rem);
   background-color: $dimgray;
   border: .5px solid $dimgray;
@@ -126,13 +116,14 @@ label {
 }
 
 button:hover {
-  background-color: $hover;
+  background-color: #93312A;
   border: .5px solid $dimgray;
   border-style: inset;
-  color: $dimgray;
+  color: white;
   cursor: pointer;
   font-weight: 500;
   transition: .3s;
+  opacity: .7;
 }
 
 .invalid-login-message,
@@ -140,12 +131,148 @@ button:hover {
   @include font(.9rem);
   color: #93312A;
   font-family: 'Spartan', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .placeholder {
   opacity: 0;
 }
+
+// Traveler Access Page
+.user-page-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-message {
+  @include font(4rem);
+  font-family: 'Playfair Display', sans-serif;
+  margin-top: 2rem;
+}
+
+.book-trip {
+  align-self: flex-end;
+  margin: .5rem;
+  margin-right: 4.5rem;
+  width: 8rem;
+}
+
+.book-trip:hover,
+.aprove-button:hover,
+.delete-button:hover  {
+  background-color: white;
+  color: $dimgray;
+}
+
+.traveler-access-line {
+  margin-bottom: 2.5rem;
+  width: 90%;
+}
+
+.user-access-page-subheader,
+.agent-access-page-subheader {
+  @include font(1.5rem);
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.agent-access-page-subheader {
+
+}
+
+.total-cost {
+  @include font(1rem);
+  margin-bottom: 1rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-trip-wrapper,
+.trip-request-wrapper {
+  align-items: center;
+  background: $dimgray;
+  border: 1px solid $lightergray;
+  border-style: inset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30rem;
+  width: auto;
+  margin: 1rem;
+  padding-bottom: 2rem;
+}
+
+.trip-image {
+  margin: 1rem;
+}
+
+img {
+  height: 24rem;
+}
+
+li {
+  color: white;
+  margin-top: 4rem;
+}
+
+.destination-image {
+  margin: 1rem;
+}
+
+// Agent access Page
+.agent-access {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-subtitle {
+  margin: 1rem;
+}
+
+.trip-request-wrapper {
+  background-color: white;
+  border: none;
+  display: flex;
+  height: auto;
+  margin: 1rem;
+}
+
+.trip-request {
+  color: $dimgray;
+
+  border-style: inset;
+}
+
+.pending-trip {
+  border: 1.5px solid $lightergray;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.pending-name,
+.pending-date,
+.pending-numtrav,
+.pending-destination {
+  color: $dimgray;
+  margin: .5rem;
+  text-align: center;
+}
+
+.trip-request {
+
+}
+
+
+
+
+
+
 
 
   // loading icon (while fetching data)

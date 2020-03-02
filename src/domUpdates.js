@@ -23,9 +23,9 @@ const domUpdates = {
         <section class="login-container">
           <h3 class="login-title">Sign In</h3>
           <label></label>
-          <input class='username' type='text'onfocus="this.value=''" value='username'></input>
+          <input class='username' type='text' value='agency'></input>
           <label></label>
-          <input class='password' onfocus="this.value='', this.type='password'" value='password'></input>
+          <input class='password' type='password' value='travel2020'></input>
           <button class='submit-user-info'>Submit</button>
           <span class='invalid-login-message'><span class="placeholder">Placeholder</span></span>
         </section>
@@ -33,45 +33,79 @@ const domUpdates = {
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
+  // code for when you turn project in
+  //<input class='password' onfocus="this.value='', this.type='password'" value='traveler2020'></input>
 
   getAgentAccess: (travelers, trips, destinations, today) => {
+    $('.form-container').hide();
+    $('#blockColorblindContent').hide();
     agent = new Agent(travelers, trips, destinations, today);
     let yearlyRevenue = agent.calculateYearlyRevenue().toLocaleString("en-US", {style: "currency", currency: "USD"});
     $('.content').html(`
       <section class="agent-access">
-        <h1></h1>
-        <h2>Pending Trip Requests:</h2>
+        <h1 class="welcome-message">Welcome, Agent Khalid</h1>
+        <hr class="traveler-access-line">
+        <p class="agent-subtitle">Revenue this Year: ${yearlyRevenue}</p>
+        <h2 class="agent-access-page-subheader">Pending Trip Requests:</h2>
+
         <ul class='list'></ul>
-        <p>Revenue this Year: ${yearlyRevenue}</p>
+
+
       </section>
     `)
     // TAKE <br> OUT WHEN STYLING'
-    console.log(foundTraveler.getDates());
-    agent.getPendingTripRequests().forEach(el => {
-      $('.list').append(`<li>
-        Name: ${el.name} <br>
-        Date: ${el.date} <br>
-        Number of Travelers: ${el.numTrav} <br>
-        Destination: ${el.destination}
-        </li>`);
+    // console.log(foundTraveler.getDates());
+    agent.getPendingTripRequests().map(el => {
+      $('.list').append(`
+        <section class="trip-request-wrapper">
+          <div class="trip-request">
+            <li class="pending-trip">
+              <span class="pending-name">${el.name} </span>
+              <span class="pending-date">${el.date} </span>
+              <span class="pending-numtrav">${el.numTrav} Travelers</span>
+              <span class="pending-destination">${el.destination} </span>
+              <div class="agent-buttons">
+              <button class="aprove-button">Approve</button>
+              <button class="delete-button">Delete</button>
+              </div>
+              </div>
+            </li>
+        </section>
+        `);
     });
   },
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
-    $('.form-container').html('');
+    $('.form-container').hide();
+    $('#blockColorblindContent').hide();
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
     let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
     let travelerTrips = traveler.getMyTripDestinations();
     let splitName = foundTraveler.name.split(' ');
     $('.content').html(`
-      <h1>Welcome, ${splitName[0]}!</h1>
-      <h2>Your Adventures:</h2>
-      <ul class='list'></ul>
-      <p class='total-cost'>You've spent ${yearlyTripExpenses} on trips this year.</p>
+      <section class="user-access-page">
+        <section class="user-page-header">
+          <h1 class="welcome-message">Welcome, ${splitName[0]}!</h1>
+          <button class="book-trip">Book Travel</button>
+        </section>
+        <hr class="traveler-access-line">
+        <h2 class="user-access-page-subheader">Where are you going, where have you been?</h2>
+        <p class='total-cost'>Total Spent: ${yearlyTripExpenses}</p>
+        <ul class='list'></ul>
+      </section>
     `);
     travelerTrips.map(destination => {
-      $('.list').append(`<li>${destination.destination}
-        <img src=${destination.image}></li>`);
+      $('.list').append(`
+        <section class="user-trip-wrapper">
+
+            <li>${destination.destination}</li>
+          </div>
+          <div class="trip-image">
+            <img class="destination-image" src=${destination.image}>
+
+        </section>
+
+        `);
     });
   },
 
