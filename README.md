@@ -26,7 +26,7 @@
 
 ## Animation
 ### Login Page Animation
-![Login page animation](https://media.giphy.com/media/MB7GZWJx8GGpEtLfDg/giphy.gif)
+![Login page animation](https://media.giphy.com/media/ZdT8Abpw6v4pxmbqq8/giphy.gif)
 ![Login page animation](https://media.giphy.com/media/LShrHdO2LUolr1PqOj/giphy.gif)
 
 ### User Page Animation
