@@ -1,5 +1,23 @@
 # Exploration Travel
 
+## Technologies Used
+* Bundled with webpack
+* TDD with mocha, chai, spies
+* HTML
+* Sass
+* jQuery
+* OOP ES6
+* Fetch API for receiving 3rd party data
+
+## Setup
+
+1. clone the repo to your local machine
+2. run npm install to download all necessary dependencies
+3. run npm start to run the server
+4. open localhost:8080 (unless your terminal says otherwise)
+5. use 'agency' as username and 'traveler2020; as a password to go to an agency's board
+6. Use 'traveler', and a number (between 1-50) directly preceding 'traveler' with no space (the number is an id of a user) and travel2020 as the password to go to an user page
+
 ## App Screenshots
 ### Login page
 [![Screen-Shot-2020-03-01-at-3-32-33-PM.png](https://i.postimg.cc/qM3v94vk/Screen-Shot-2020-03-01-at-3-32-33-PM.png)](https://postimg.cc/nCnxm8m5)
