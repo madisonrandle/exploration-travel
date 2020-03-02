@@ -20,7 +20,7 @@
 
 ## App Screenshots
 ### Login page
-[![Login Page](https://i.postimg.cc/T2LTY4k7/Screen-Shot-2020-03-01-at-9-36-37-PM.png)](https://postimg.cc/jCbpMZYP)
+[![Login Page](https://media.giphy.com/media/MBHa1IOOdUf7QoSarS/giphy.gif)
 ### User Page
 [![Login Page](https://i.postimg.cc/t4jwbZ6C/Screen-Shot-2020-03-01-at-7-03-18-PM.png)](https://postimg.cc/crFXMJTV)
 
