@@ -1,3 +1,4 @@
+import domUpdates from '../domUpdates';
 import User from './user';
 
 class Traveler extends User {
@@ -31,6 +32,8 @@ class Traveler extends User {
     });
     return totalTripExpense.reduce((totalYearlyTripCost, tripCost) => totalYearlyTripCost += tripCost);
   };
+
+
 }
 
 export default Traveler;
