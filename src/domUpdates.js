@@ -18,15 +18,11 @@ const domUpdates = {
     $('.form-container').append(`
       <form>
         <section class="travel-image-container">
-
-
-
         </section>
-
         <section class="login-container">
           <h3 class="login-title">Sign In</h3>
           <label></label>
-          <input class='username' type='text' value='agency'></input>
+          <input class='username' type='text' value='traveler45'></input>
           <label></label>
           <input class='password' type='password' value='travel2020'></input>
           <button class='submit-user-info'>Submit</button>
@@ -35,6 +31,7 @@ const domUpdates = {
       </form>
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
+
   },
   // code for homepage image
     // <img class="travel-image" src="./images/exploration.jpg" alt="human walking away into a desert"/>
@@ -58,6 +55,7 @@ const domUpdates = {
       </section>
     `)
 
+
     agent.getPendingTripRequests().map(el => {
       $('.list').append(`
         <section class="trip-request-wrapper">
@@ -79,6 +77,7 @@ const domUpdates = {
   },
 
   getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
+
     $('.form-container').hide();
     $('#blockColorblindContent').hide();
     traveler = new Traveler(travelers, trips, destinations, foundTraveler);
@@ -110,6 +109,15 @@ const domUpdates = {
 
         `);
     });
+      $('.book-trip').click((e) => domUpdates.bookTravel(e));
+  },
+
+  bookTravel: (e) => {
+  $('.content').html(`
+    <section class="book-travel-page">
+      <h1 class="welcome-message">Where are you going?</h1>
+    </section>
+  `);
   },
 
   showErrorMessage: () => {
