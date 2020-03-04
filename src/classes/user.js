@@ -14,16 +14,18 @@ class User {
 
   validateUser(e) {
     e.preventDefault();
-
     foundTraveler = this.travelers.find(traveler => {
+
       return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020';
     });
+
     if (foundTraveler) {
       domUpdates.getTravelerAccess(this.travelers, this.trips, this.destinations, foundTraveler);
       return foundTraveler.id;
     } else {
       $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.getAgentAccess(this.travelers, this.trips, this.destinations, this.today) : domUpdates.showErrorMessage();
     }
+
   };
 
   getTripsThisYear() {
