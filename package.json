@@ -33,6 +33,9 @@
   },
   "dependencies": {
     "jquery": "^3.4.1",
-    "moment": "^2.24.0"
+    "jquery-ui-bundle": "^1.12.1-migrate",
+    "jquery-ui-dist": "^1.12.1",
+    "moment": "^2.24.0",
+    "webpack-jquery-ui": "^2.0.1"
   }
 }
