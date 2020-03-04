@@ -1,16 +1,12 @@
 # Exploration Travel
 
-## Technologies Used
-* Bundled with webpack
-* TDD with mocha, chai, spies
-* HTML
-* Sass
-* jQuery
-* OOP ES6
-* Fetch API for receiving 3rd party data
+## Abstract
+**Technologies Used:**
+*Bundled with webpack*, *TDD (with mocha, chai, spies)*, *HTML*, *Sass*, *jQuery*, *OOP ES6*, *Fetch API for receiving 3rd party data*
+
+Exploration Travel is an appication I built during my time at [Turing School of Softwar and Design](http://turing.io). For this project, the goal was to create an application to manage and track different trips for users and travel agencies. Travelers can log on and see their past, present and upcoming trips. Travelers can also create new trip requests. An Agent can log on and approve pending trips for various travelers. And search for individual travelers.
 
 ## Setup
-
 1. clone the repo to your local machine
 2. run npm install to download all necessary dependencies
 3. run npm start to run the server
@@ -33,3 +29,4 @@
 ### User Page Animation
 ![Login page animation](https://media.giphy.com/media/jtngmrWscnGiq8ABit/giphy.gif)
 
+## Project Next Steps
