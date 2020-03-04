@@ -9,37 +9,27 @@ class Traveler extends User {
   };
 
   getMyTrips() {
-    return this.destinations.reduce((trips, destination) => {
-      this.trips.find(trip => (this.id === trip.userID && destination.id === trip.destinationID) && trips.push(destination));
-      return trips;
-    }, []);
-
+    return this.getTripsThisYear().filter(trip => trip.userID === this.id);
   };
 
-  getYearlyTripExpenses() {
-    let travelerTrips = this.trips.filter(trip => trip.userID === this.id);
-    let tripDestinations = this.getMyTrips();
-    return travelerTrips.map(trip => {
-      let finalObj = { cost: 0, date: trip.date }
-        tripDestinations.forEach(destination => {
-          finalObj.cost += (trip.duration * destination.estimatedLodgingCostPerDay) + (trip.travelers * destination.estimatedFlightCostPerPerson)
-      });
-      return finalObj
-    })
+  getMyTripDestinations() {
+    return this.destinations.filter(destination => {
+      return this.getMyTrips().find(trip => destination.id === trip.destinationID);
+    });
   };
 
   // should get the last year from todays date BUT!! ... It's a leap year -_-
-  calculateyearlyTripExpenses() {
-    let yearlyTripExpenses = this.getYearlyTripExpenses().reduce((acc, el) => {
-      if (el.date.includes('2020/')) {
-        let tax = el.cost * .10;
-        acc += el.cost + tax;
-      }
-      return acc;
-    }, 0);
-    yearlyTripExpenses /= 100;
-    yearlyTripExpenses = yearlyTripExpenses.toLocaleString("en-US", {style:"currency", currency:"USD"});
-    return yearlyTripExpenses;
+  calculateYearlyTripExpenses() {
+    let totalTripExpense = this.getMyTripDestinations().map(destination => {
+      let trip = this.getMyTrips().find(trip => destination.id === trip.destinationID);
+
+      let flightCost = trip.travelers * destination.estimatedFlightCostPerPerson;
+      let lodgingCostPerPerson = trip.duration * destination.estimatedLodgingCostPerDay;
+      let lodgingCost = trip.travelers * lodgingCostPerPerson;
+      let agencyFee = (flightCost + lodgingCost) * .10;
+      return flightCost + lodgingCost + agencyFee;
+    });
+    return totalTripExpense.reduce((totalYearlyTripCost, tripCost) => totalYearlyTripCost += tripCost);
   };
 }
 

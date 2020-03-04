@@ -4,11 +4,12 @@ import domUpdates from './domUpdates';
 import User from './classes/user';
 import moment from 'moment';
 
-let today;
-let user;
-let id;
-
 // console.log('timskiez', moment()._d);
+// console.log(Date.now());
+
+let today, user, id;
+
+// ^ be sure you're using the 'today' variable and property before submitting project
 
 const getTravelersData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
   .then(response => response.json())
@@ -38,12 +39,10 @@ Promise.all([getTravelersData, getTripsData, getDestinationsData])
     let getTravelers = data[0];
     let getTrips = data[1];
     let getDestinations = data[2];
-    user = new User(getTravelers, getTrips, getDestinations, today);
+    user = new User(getTravelers, getTrips, getDestinations, '2019/01/03');
     domUpdates.showLogInForm(user);
-
   })
   .catch(error => console.log(`There was an error: ${error}`));
 
-// const findID = (e) => {
-//   id = user.validateUser(e);
-// }
+// the id here will be used added with concatination to fetch from the correct getTravelerData endpoint:
+    // const findID = (e) => id = user.validateUser(e);

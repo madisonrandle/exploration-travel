@@ -3,32 +3,289 @@
 @import 'reset';
 
 * {
-  @include margin(0, 0, 0, 0);
-  @include padding(0, 0, 0, 0);
   box-sizing: border-box;
+  color: $dimgray;
   font-family: 'Spartan', sans-serif;
   scroll-behavior: smooth;
 }
 
 body {
-  background: linear-gradient(0deg, $forest 0%, rgba(179,125,80,0.11668417366946782) 50%, $peanut 100%),
-  url('../images/adventure.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 750px;
-}
-
-img {
-  height: 200px;
-  width: 200px;
+  height: 100vh;
 }
 
 // loading-page
-.loading {
+.loading-content {
+  padding-top: 20%;
+}
+
+.content {
   @include font(1.5em);
-  color: $antique-white;
   text-align: center;
 }
+
+.travel-quote {
+  @include font(1.3rem);
+  color: $dimgray;
+  font-weight: 300;
+  letter-spacing: .17rem;
+  margin-top: 1rem;
+  padding: .5rem;
+}
+
+.title {
+  @include font(300%);
+  font-family: 'Playfair Display', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.form-container {
+  display: flex;
+  height: 23.9rem;
+  justify-content: center;
+}
+
+form {
+  border: 1.5px solid $lightergray;
+  border-style: inset;
+  display: grid;
+  grid-template-areas:
+  "left right";
+  grid-template-columns: 1fr 1fr;
+  height: 24.34rem;
+}
+
+.travel-image-container {
+  grid-area: left;
+}
+
+.travel-image {
+  height: auto;
+  width: 19.28rem;
+}
+
+.login-container {
+  background: linear-gradient(0deg, $peanut 1%, $pistachio 100%);
+  display: flex;
+  flex-direction: column;
+  grid-area: right;
+  height: 24.1rem;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.login-title {
+  @include font(1.5rem);
+  font-family: 'Spartan', sans-serif;
+  font-weight: 500;
+}
+
+.line {
+  display: flex;
+  margin-bottom: 4.5rem;
+  width: 90%;
+}
+
+label {
+  @include font(70%);
+  font-family: 'Spartan', sans-serif;
+}
+
+.password,
+.username {
+  @include font(1rem);
+  background-color: inherit;
+  border-style: none;
+  border-bottom: .01rem solid $dimgray;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  text-transform: lowercase;
+  width: 100%;
+}
+
+.submit-user-info,
+.book-trip,
+.aprove-button,
+.delete-button {
+  @include font(1rem);
+  background-color: $dimgray;
+  border: .5px solid $dimgray;
+  border-style: inset;
+  color: white;
+  padding: .5rem;
+  width: 60%;
+}
+
+button:hover {
+  background-color: #93312A;
+  border: .5px solid $dimgray;
+  border-style: inset;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: .3s;
+  opacity: .7;
+}
+
+.invalid-login-message,
+.placeholder {
+  @include font(.9rem);
+  color: #93312A;
+  font-family: 'Spartan', sans-serif;
+  font-weight: 500;
+}
+
+.placeholder {
+  opacity: 0;
+}
+
+// Traveler Access Page
+.user-page-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-message {
+  @include font(4rem);
+  font-family: 'Playfair Display', sans-serif;
+  margin-top: 2rem;
+}
+
+.book-trip {
+  align-self: flex-end;
+  margin: .5rem;
+  margin-right: 4.5rem;
+  width: 8rem;
+}
+
+.book-trip:hover,
+.aprove-button:hover,
+.delete-button:hover  {
+  background-color: white;
+  color: $dimgray;
+  opacity: 1;
+}
+
+.traveler-access-line {
+  margin-bottom: 2.5rem;
+  width: 90%;
+}
+
+.user-access-page-subheader,
+.agent-access-page-subheader {
+  @include font(1.5rem);
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.agent-access-page-subheader {
+
+}
+
+.total-cost {
+  @include font(1rem);
+  margin-bottom: 1rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-trip-wrapper,
+.trip-request-wrapper {
+  align-items: center;
+  background: $dimgray;
+  border: 1px solid $lightergray;
+  border-style: inset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30rem;
+  width: auto;
+  margin: 1rem;
+  padding-bottom: 2rem;
+}
+
+.trip-image {
+  margin: 1rem;
+}
+
+img {
+  height: 24rem;
+}
+
+li {
+  color: white;
+  margin-top: 4rem;
+}
+
+.destination-image {
+  margin: 1rem;
+}
+
+// Agent access Page
+.agent-access {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-subtitle {
+  margin: 1rem;
+}
+
+.trip-request-wrapper {
+  background-color: white;
+  border: none;
+  display: flex;
+  height: auto;
+  margin: 1rem;
+}
+
+.trip-request {
+  color: $dimgray;
+
+  border-style: inset;
+}
+
+.pending-trip {
+  border: 1.5px solid $lightergray;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.pending-name,
+.pending-date,
+.pending-numtrav,
+.pending-destination {
+  color: $dimgray;
+  margin: .5rem;
+  text-align: center;
+}
+
+.trip-request {
+
+}
+
+.agent-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.aprove-button,
+.delete-button {
+  margin: .5rem;
+  width: 7rem;
+}
+
+
+
+
+
+
+
   // loading icon (while fetching data)
 .lds-spinner {
   color: official;
@@ -50,7 +307,7 @@ img {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: $antique-white;
+  background: $dimgray;
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);
