@@ -44,31 +44,42 @@ body {
   justify-content: center;
 }
 
-form {
-  border: 1.5px solid $lightergray;
-  border-style: inset;
+
+.login-form,
+.book-travel-form-container {
+  border: 2.8px solid $lightergray;
   display: grid;
   grid-template-areas:
   "left right";
   grid-template-columns: 1fr 1fr;
-  height: 24.34rem;
+  height: 24.3rem;
 }
 
-.travel-image-container {
+.book-travel-form-container {
+  height: 24rem;
+}
+
+.travel-image-container,
+trip-request-info {
   grid-area: left;
+}
+
+.book-travel-form {
+  height: 23.06rem;
 }
 
 .travel-image {
   height: auto;
-  width: 19.28rem;
+  width: 19.05rem;
 }
 
-.login-container {
+.login-container,
+.estimated-totals {
   background: linear-gradient(0deg, $peanut 1%, $pistachio 100%);
   display: flex;
   flex-direction: column;
   grid-area: right;
-  height: 24.1rem;
+  height: 23.92rem;
   justify-content: space-around;
   padding: 2rem;
 }
@@ -91,7 +102,8 @@ label {
 }
 
 .password,
-.username {
+.username,
+.book-trip-inputs {
   @include font(1rem);
   background-color: inherit;
   border-style: none;
@@ -105,11 +117,12 @@ label {
 .submit-user-info,
 .book-trip,
 .aprove-button,
-.delete-button {
+.delete-button,
+.submit-trip-button,
+.estimate-trip-cost-button {
   @include font(1rem);
   background-color: $dimgray;
   border: .5px solid $dimgray;
-  border-style: inset;
   color: white;
   padding: .5rem;
   width: 60%;
@@ -118,7 +131,6 @@ label {
 button:hover {
   background-color: #93312A;
   border: .5px solid $dimgray;
-  border-style: inset;
   color: white;
   cursor: pointer;
   font-weight: 500;
@@ -159,7 +171,9 @@ button:hover {
 
 .book-trip:hover,
 .aprove-button:hover,
-.delete-button:hover  {
+.delete-button:hover,
+.submit-trip-button:hover,
+.estimate-trip-cost-button:hover {
   background-color: white;
   color: $dimgray;
   opacity: 1;
@@ -173,7 +187,7 @@ button:hover {
 .user-access-page-subheader,
 .agent-access-page-subheader {
   @include font(1.5rem);
-  font-weight: 500;
+  font-weight: 300;
   margin: 1rem;
 }
 
@@ -193,18 +207,18 @@ ul {
 }
 
 .user-trip-wrapper,
-.trip-request-wrapper {
+.trip-request-wrapper,
+.book-travel-container {
   align-items: center;
   background: $dimgray;
   border: 1px solid $lightergray;
-  border-style: inset;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 30rem;
-  width: auto;
+  height: 35rem;
   margin: 1rem;
   padding-bottom: 2rem;
+  width: 50rem;
 }
 
 .trip-image {
@@ -245,7 +259,6 @@ li {
 .trip-request {
   color: $dimgray;
 
-  border-style: inset;
 }
 
 .pending-trip {
@@ -280,11 +293,96 @@ li {
   width: 7rem;
 }
 
+// Book Travel Page
+.book-travel-page {
+  background: $off-white;
+  padding-top: 1rem;
+}
+.welcome-message-book {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.book-travel-container {
+  background: none;
+  border: none;
+}
 
 
+.book-travel-form {
+  align-items: flex-start;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  height: 24.09rem;
+}
 
+.estimated-totals {
+  background: $off-white;
+}
 
+.book-trip-labels {
+  @include font(.9rem);
+  font-weight: 600;
+  margin: 1rem 0;
 
+}
+
+.book-trip-inputs,
+.date {
+  border: .05rem solid $dimgray;
+  border-radius: .3rem;
+  padding-left: .7rem;
+  margin: 0;
+  width: 20rem;
+  height: 2rem;
+}
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.estimated-labels {
+  margin: .3rem 0;
+}
+
+.estimated-flight,
+.estimated-lodging,
+.estimated-total {
+  @include font(1rem);
+  margin-bottom: .5rem;
+}
+
+.estimated-total {
+  margin-bottom: 0;
+}
+
+.grand-total {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 0;
+  margin-top: .5rem;
+  text-align: left;
+  width: 12rem;
+}
+
+.label-subheader {
+  @include font(.8rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+};
+
+.back-to-booking-page:hover,
+.home:hover {
+  color: #93312A;
+  cursor: pointer;
+
+}
 
   // loading icon (while fetching data)
 .lds-spinner {
