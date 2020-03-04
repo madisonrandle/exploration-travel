@@ -7,9 +7,6 @@ const spies = require('chai-spies');
 chai.use(spies);
 
 describe('domUpdates.js', () => {
-  // The chai spy.on method takes in 3 arguments:
-      // ([object which has the method im spying on], [method's name], [callBack of what im expecting to make sure its returning what i want])
-
   chai.spy.on(domUpdates, 'showLogInForm', () => 'login');
     it('Should invoke showLogInForm', () => {
       expect(domUpdates.showLogInForm()).to.equal('login');
