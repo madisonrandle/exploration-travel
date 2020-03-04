@@ -1,10 +1,10 @@
 const chai = require("chai");
 const expect = chai.expect;
-import Traveler from '../classes/traveler';
+import Traveler from '../classes/agent';
 
 let traveler;
 
-describe.only('Traveler', () => {
+describe('Traveler', () => {
    beforeEach(() => {
      traveler = new Traveler();
    });
@@ -16,4 +16,4 @@ describe.only('Traveler', () => {
    it('Should find 10% of the total spent on trips this year', () => {
 
    });
-}
+})

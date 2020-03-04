@@ -116,8 +116,8 @@ label {
 
 .submit-user-info,
 .book-trip,
-.aprove-button,
-.delete-button,
+.approve-button,
+.deny-button,
 .submit-trip-button,
 .estimate-trip-cost-button {
   @include font(1rem);
@@ -169,14 +169,24 @@ button:hover {
   width: 8rem;
 }
 
+.search-trips-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
 .book-trip:hover,
-.aprove-button:hover,
-.delete-button:hover,
+.approve-button:hover,
+.deny-button:hover,
 .submit-trip-button:hover,
 .estimate-trip-cost-button:hover {
   background-color: white;
   color: $dimgray;
   opacity: 1;
+}
+.search-pending {
+  padding-left: 1rem;
 }
 
 .traveler-access-line {
@@ -229,7 +239,8 @@ img {
   height: 24rem;
 }
 
-li {
+li,
+.destination-title {
   color: white;
   margin-top: 4rem;
 }
@@ -287,8 +298,8 @@ li {
   justify-content: center;
 }
 
-.aprove-button,
-.delete-button {
+.approve-button,
+.deny-button {
   margin: .5rem;
   width: 7rem;
 }
