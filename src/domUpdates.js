@@ -33,8 +33,8 @@ const domUpdates = {
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
-  // code when you turn project in to load page with 'password' & 'username'
-  //onfocus="this.value='', this.type='password'" 
+
+  //onfocus="this.value='', this.type='password'"
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     $('.form-container').hide();
