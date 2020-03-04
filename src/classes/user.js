@@ -15,17 +15,14 @@ class User {
   validateUser(e) {
     e.preventDefault();
     foundTraveler = this.travelers.find(traveler => {
-
       return $('.username').val() === `traveler${traveler.id}` && $('.password').val() === 'travel2020';
     });
-
     if (foundTraveler) {
       domUpdates.getTravelerAccess(this.travelers, this.trips, this.destinations, foundTraveler);
       return foundTraveler.id;
     } else {
       $('.username').val() === 'agency' && $('.password').val() === 'travel2020' ? domUpdates.getAgentAccess(this.travelers, this.trips, this.destinations, this.today) : domUpdates.showErrorMessage();
     }
-
   };
 
   getTripsThisYear() {
@@ -69,7 +66,6 @@ class User {
       typeof(trip.travelers) === 'string' ? numTravelers += parseInt(trip.travelers) : numTravelers += trip.travelers;
       return numTravelers;
     }, 0);
-
       // method if i need to show the trips happening on current day
       // let finalObj;
       // return didIGetIt = this.destinations.reduce((acc, destination) => {

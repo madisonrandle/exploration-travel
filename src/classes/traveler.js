@@ -2,7 +2,7 @@ import $ from 'jquery';
 import domUpdates from '../domUpdates';
 import User from './user';
 
-let tripRequestInformation;
+let tripRequestInformation, destination;
 
 class Traveler extends User {
   constructor(travelers, trips, destinations, traveler, today) {
@@ -37,7 +37,7 @@ class Traveler extends User {
   };
 
   calculateTripCost(tripRequestInformation) {
-    let destination = this.destinations.find(destination => destination.destination === tripRequestInformation.destination);
+    destination = this.destinations.find(destination => destination.destination === tripRequestInformation.destination);
     let flightCost = tripRequestInformation.numTravelers * destination.estimatedFlightCostPerPerson;
     let lodgingCostPerPerson = tripRequestInformation.duration * destination.estimatedLodgingCostPerDay;
     let lodgingCost = tripRequestInformation.numTravelers * lodgingCostPerPerson;
@@ -57,9 +57,7 @@ class Traveler extends User {
     let duration = $('.duration-input').val();
     let numTravelers = $('.num-travelers-input').val();
     let destination = $('.destination').val();
-
     if (!destination || !numTravelers || !duration || !date) {
-      // console.log('not enough info!');
     } else {
       tripRequestInformation = {
         date: `${date}`,
@@ -72,14 +70,10 @@ class Traveler extends User {
   };
 
   submitTripRequest(e) {
-    // console.log('trip request method');
-    // console.log(this.traveler);
-    // domUpdates.postTripRequest(e);
     this.validateUser(e);
-
-
-  }
-
+    domUpdates.postTripRequest(tripRequestInformation, destination);
+    domUpdates.addPendingTripRequest(e, tripRequestInformation, destination);
+  };
 }
 
 export default Traveler;
