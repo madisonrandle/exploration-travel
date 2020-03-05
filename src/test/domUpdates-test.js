@@ -11,9 +11,7 @@ describe('domUpdates.js', () => {
     it('Should invoke showLogInForm', () => {
       expect(domUpdates.showLogInForm()).to.equal('login');
     });
-
-
-
+    
   chai.spy.on(domUpdates, 'showErrorMessage', () => 'invalid login');
     it('Should invoke showErrorMessage', () => {
       expect(domUpdates.showErrorMessage()).to.equal('invalid login');
