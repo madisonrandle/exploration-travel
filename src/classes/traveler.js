@@ -70,7 +70,7 @@ class Traveler extends User {
 
   submitTripRequest(e) {
     this.validateUser(e);
-    domUpdates.postTripRequest(tripRequestInformation, destination);
+    domUpdates.postTripRequest(tripRequestInformation, destination, this.id);
     domUpdates.addPendingTripRequest(e, tripRequestInformation, destination);
   };
 }
