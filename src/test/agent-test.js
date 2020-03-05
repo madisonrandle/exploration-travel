@@ -20,6 +20,14 @@ describe('Agent', () => {
     }]
   });
 
+  it('should be a function', function() {
+    expect(Agent).to.be.a('function');
+  });
+
+  it('should be an instance of User', function() {
+    expect(agent).to.be.an.instanceof(Agent);
+  });
+
   it('Should have an array of travelers', () => {
     console.log('hi');
      expect(agent.travelers).to.equal(travelersData);
@@ -33,11 +41,15 @@ describe('Agent', () => {
      expect(agent.destinations).to.equal(destinationsData);
   });
 
-  it('Should have an array of destinations', () => {
-     expect(agent.getPendingTripRequests()).to.be.an('[]');
+  it('Should return an object combining properties of the trips array and travelers array', () => {
+     expect(agent.getPendingTripRequests()).to.be.an('{}');
   });
 
+  it('Should calculate an agencies yearly revenue', () => {
+     expect(agent.calculateYearlyRevenue()).to.be.a(number);
+  });
 
-
-
+  it('Should calculate an agency fee of 10% of a given trips expenses', () => {
+    expect(agent.calculateAgencyFee()).to.be.a(number);
+  });
 }

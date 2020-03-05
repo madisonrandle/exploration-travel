@@ -59,4 +59,17 @@ describe('Traveler', () => {
   it('Should find the name of all destinations', () => {
      expect(traveler.getDestinationOptions()).to.be.a(string);
   });
+
+  it('Should calculate the estimated trip cost when a traveler chooses trip options', () => {
+     expect(traveler.calculateEstimatedCostOfTrip()).to.be.a(number);
+  });
+
+  chai.spy.on(domUpdates, 'submitTripRequest', () => 'should take user back to their home page after submitting trip request');
+    it('Should show the traveler access page', () => {
+      expect(domUpdates.submitTripRequest()).to.equal('should take user back to their home page after submitting trip request');
+    });
+
+  it('Should post a trip to the trips endpoint', () => {
+     expect(traveler.submitTripRequest()).to.be.an('{}');
+  });
 }

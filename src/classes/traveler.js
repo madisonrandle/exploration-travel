@@ -14,6 +14,7 @@ class Traveler extends User {
   };
 
   getMyTrips() {
+    console.log(this.getTripsThisYear());
     return this.getTripsThisYear().filter(trip => trip.userID === this.id);
   };
 
