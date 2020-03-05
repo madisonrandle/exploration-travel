@@ -8,6 +8,7 @@ let foundTraveler, traveler, agent, today, user;
 const domUpdates = {
   showLogInForm: (user) => {
     foundTraveler = user;
+
     $('.content').html(`
       <p class="travel-quote meow">Wanderlust. A strong desire to wander and explore the world.</p>
       <h1 class="title">Exploration Travel</h1>
@@ -21,7 +22,7 @@ const domUpdates = {
         <section class="login-container">
           <h3 class="login-title">Sign In</h3>
           <label></label>
-          <input class='username' type='text' value='traveler'></input>
+          <input class='username' type='text' value='traveler45'></input>
           <label></label>
           <input class='password' type='password' value='travel2020'></input>
           <button class='submit-user-info'>Submit</button>
@@ -31,6 +32,8 @@ const domUpdates = {
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
+
+  //onfocus="this.value='', this.type='password'"
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     $('.form-container').hide();
@@ -51,27 +54,37 @@ const domUpdates = {
         <ul class='list'></ul>
       </section>
     `);
-    agent.getPendingTripRequests().map(el => {
-      $('.list').append(`
-        <section class="trip-request-wrapper">
+    agent.getPendingTripRequests().forEach(el => {
+      let trippyID;
+      trips.forEach(trip => {
+        destinations.forEach(destination => {
+          if (trip.userID === el.id && trip.destinationID === destination.id) {
+            trippyID = trip.id
+          }
+        })
+        });
+        console.log(el);
+        $('.list').append(`
+          <section class="trip-request-wrapper">
           <div class="trip-request">
-            <li class="pending-trip" id="${el.id}">
-              <span class="pending-name">${el.name} </span>
-              <span class="pending-date">${el.date} </span>
-              <span class="pending-numtrav">${el.numTrav} Travelers</span>
-              <span class="pending-destination">${el.destination} </span>
-              <div class="agent-buttons">
-              <button class="approve-button" id="${el.id}">Approve</button>
-              <button class="deny-button" id="${el.id}">Deny</button>
-              </div>
-              </div>
-            </li>
-        </section>
-      `);
-    });
-    $('.approve-button').click((e) => domUpdates.approveTripRequest(e));
-    $('.deny-button').click((e) => domUpdates.denyTripRequest(e));
-    $('.search-pending').click((e) => domUpdates.getSearchedPendingTripRequests(e));
+          <li class="pending-trip" id="${trippyID}">
+          <span class="pending-name">${el.name} </span>
+          <span class="pending-date">${el.date} </span>
+          <span class="pending-numtrav">${el.numTrav} Travelers</span>
+          <span class="pending-destination">${el.destination} </span>
+          <div class="agent-buttons">
+          <button class="approve-button" id="${trippyID}">Approve</button>
+          <button class="deny-button" id="${trippyID}">Deny</button>
+          </div>
+          </div>
+          </li>
+          </section>
+          `);
+      })
+      $('.approve-button').click((e) => domUpdates.approveTripRequest(e));
+      $('.deny-button').click((e) => domUpdates.denyTripRequest(e));
+      $('.search-pending').click((e) => domUpdates.getSearchedPendingTripRequests(e));
+
   },
 
   getSearchedPendingTripRequests: (e) => {
@@ -80,6 +93,7 @@ const domUpdates = {
     let allTrips = foundTraveler.trips.filter(trip => {
       return trip.userID === searched[0].id;
     });
+
     allTrips.forEach(trip => {
       let formatedDate = moment(trip.date).format('MM/DD/YYYY');
       trip.date = formatedDate;
@@ -109,8 +123,11 @@ const domUpdates = {
   },
 
   approveTripRequest: (e) => {
-    let foundTrip = foundTraveler.trips.find(trip => trip.userID === parseInt(event.target.id))
-    if (foundTrip && foundTrip.status === 'pending') {
+
+
+    let foundTrip = foundTraveler.trips.find(trip => trip.id === parseInt(event.target.id))
+    console.log(foundTrip);
+
       let formatedDate = moment(foundTrip.date).format('YYYY/MM/DD');
       fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/updateTrip', {
         method: 'POST',
@@ -125,11 +142,11 @@ const domUpdates = {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.log(`There was an error: ${error}`));
-    }
   },
 
   denyTripRequest: (e) => {
-    let foundTrip = foundTraveler.trips.find(trip => trip.userID === parseInt(event.target.id))
+    let foundTrip = foundTraveler.trips.find(trip => trip.id === parseInt(event.target.id))
+
     fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips', {
       method: 'DELETE',
       headers: {
@@ -142,14 +159,19 @@ const domUpdates = {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.log(`There was an error: ${error}`));
+
   },
+
 
   getTravelerAccess: (travelers, trips, destinations, user) => {
     $('.form-container').hide();
     $('#blockColorblindContent').hide();
     traveler = new Traveler(travelers, trips, destinations, user);
+
     let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
+
     let travelerTrips = traveler.getMyTripDestinations();
+
     let splitName = user.name.split(' ');
     $('.content').html(`
       <section class="user-access-page">
@@ -268,7 +290,7 @@ const domUpdates = {
     fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips', {
       method: 'POST',
       headers: {
-      	'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
       },
       body: JSON.stringify({
        id: Date.now(),

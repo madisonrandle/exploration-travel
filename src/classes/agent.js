@@ -10,6 +10,7 @@ class Agent extends User {
 
   getPendingTripRequests() {
     let finalObj;
+    let tripID;
     let tripRequests = this.trips.filter(trip => trip.status === 'pending');
     return tripRequests.map(trip => {
       finalObj = {
