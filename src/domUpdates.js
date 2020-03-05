@@ -277,8 +277,9 @@ const domUpdates = {
     $('.submit-trip-button').click((e) => traveler.submitTripRequest(e));
   },
 
-  postTripRequest: (tripRequestInformation, destination) => {
+  postTripRequest: (tripRequestInformation, destination, id) => {
     let formatedDate = moment(tripRequestInformation.date).format('YYYY/MM/DD');
+
     fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips', {
       method: 'POST',
       headers: {
@@ -286,7 +287,7 @@ const domUpdates = {
       },
       body: JSON.stringify({
        id: Date.now(),
-       userID: user.id,
+       userID: id,
        destinationID: parseInt(destination.id),
        travelers: parseInt(tripRequestInformation.numTravelers),
        date: formatedDate,
