@@ -17,6 +17,14 @@ describe('User', () => {
      user = new User(travelersData, tripsData, destinationsData);
    });
 
+   it('should be a function', function() {
+     expect(User).to.be.a('function');
+   });
+
+   it('should be an instance of User', function() {
+     expect(user).to.be.an.instanceof(User);
+   });
+
    it('Should have an array of travelers', () => {
      console.log('hi');
       expect(user.travelers).to.equal(travelersData);
