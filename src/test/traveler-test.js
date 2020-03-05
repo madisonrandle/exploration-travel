@@ -59,37 +59,4 @@ describe('Traveler', () => {
   it('Should find the name of all destinations', () => {
      expect(traveler.getDestinationOptions()).to.be.a(string);
   });
-
-})
-
-
-
-
-
-
-   chai.spy.on(domUpdates, 'validateUser', () => 'agency user name and pending trips');
-     it('Should invoke validateAgencyUser', () => {
-       expect(domUpdates.validateUser()).to.equal('agency user name and pending trips');
-     });
-
-   chai.spy.on(domUpdates, 'validateUser', () => 'user name and all trips a user has taken');
-     it('Should invoke validateUser', () => {
-       expect(domUpdates.validateUser()).to.equal('user name and all trips a user has taken');
-   });
-
-   it('Should find all trips taken this year', () => {
-      expect(user.getTripsThisYear()).to.be.an('[]');
-   });
-
-   it('Should calculate travelers trip expenses this year', () => {
-      expect(user.calculateYearlyTravelersTripExpenses()).to.be.a(number);
-   });
-
-   it('Should find all the trips this year for each destination', () => {
-      expect(user.getTripInfo()).to.be.an(object);
-   });
-
-   it('Should find all travelers on a trip today', () => {
-      expect(user.getDates()).to.be.a(number);
-   });
-});
+}
