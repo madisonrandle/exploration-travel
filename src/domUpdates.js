@@ -156,18 +156,16 @@ const domUpdates = {
   },
 
 
-  getTravelerAccess: (travelers, trips, destinations, foundTraveler) => {
-    user = foundTraveler;
+  getTravelerAccess: (travelers, trips, destinations, user) => {
     $('.form-container').hide();
     $('#blockColorblindContent').hide();
+    traveler = new Traveler(travelers, trips, destinations, user);
 
-    console.log(foundTraveler);
-
-
-    traveler = new Traveler(travelers, trips, destinations, foundTraveler);
     let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
+
     let travelerTrips = traveler.getMyTripDestinations();
-    let splitName = foundTraveler.name.split(' ');
+
+    let splitName = user.name.split(' ');
     $('.content').html(`
       <section class="user-access-page">
         <section class="user-page-header">
