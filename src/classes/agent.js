@@ -43,14 +43,6 @@ class Agent extends User {
       return expenseData['revenue'] = expenseData.totalExpenses * .10;
     });
   };
-
-  // searchPendingRequests() {
-  //   let searchInput = $('.search-pending').val()
-  //   console.log(searchInput);
-  //   this.getPendingTripRequests().filter(request => request.name.toLowerCase().includes(searchInput));
-  //
-  //
-  // }
 }
 
 export default Agent;
