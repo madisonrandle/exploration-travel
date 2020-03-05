@@ -5,11 +5,9 @@ import moment from 'moment';
 
 let foundTraveler, traveler, agent, today, user;
 
-// ^ be sure you're using the 'today' variable and property before submitting project
 const domUpdates = {
   showLogInForm: (user) => {
     foundTraveler = user;
-
     $('.content').html(`
       <p class="travel-quote meow">Wanderlust. A strong desire to wander and explore the world.</p>
       <h1 class="title">Exploration Travel</h1>
@@ -23,7 +21,7 @@ const domUpdates = {
         <section class="login-container">
           <h3 class="login-title">Sign In</h3>
           <label></label>
-          <input class='username' type='text' value='traveler45'></input>
+          <input class='username' type='text' value='traveler'></input>
           <label></label>
           <input class='password' type='password' value='travel2020'></input>
           <button class='submit-user-info'>Submit</button>
@@ -33,8 +31,6 @@ const domUpdates = {
     `);
     $('.submit-user-info').click((e) => user.validateUser(e));
   },
-
-  //onfocus="this.value='', this.type='password'"
 
   getAgentAccess: (travelers, trips, destinations, today) => {
     $('.form-container').hide();
@@ -76,7 +72,6 @@ const domUpdates = {
     $('.approve-button').click((e) => domUpdates.approveTripRequest(e));
     $('.deny-button').click((e) => domUpdates.denyTripRequest(e));
     $('.search-pending').click((e) => domUpdates.getSearchedPendingTripRequests(e));
-
   },
 
   getSearchedPendingTripRequests: (e) => {
@@ -85,7 +80,6 @@ const domUpdates = {
     let allTrips = foundTraveler.trips.filter(trip => {
       return trip.userID === searched[0].id;
     });
-
     allTrips.forEach(trip => {
       let formatedDate = moment(trip.date).format('MM/DD/YYYY');
       trip.date = formatedDate;
@@ -115,10 +109,7 @@ const domUpdates = {
   },
 
   approveTripRequest: (e) => {
-
-
     let foundTrip = foundTraveler.trips.find(trip => trip.userID === parseInt(event.target.id))
-
     if (foundTrip && foundTrip.status === 'pending') {
       let formatedDate = moment(foundTrip.date).format('YYYY/MM/DD');
       fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/updateTrip', {
@@ -139,7 +130,6 @@ const domUpdates = {
 
   denyTripRequest: (e) => {
     let foundTrip = foundTraveler.trips.find(trip => trip.userID === parseInt(event.target.id))
-
     fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips', {
       method: 'DELETE',
       headers: {
@@ -152,19 +142,14 @@ const domUpdates = {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.log(`There was an error: ${error}`));
-
   },
-
 
   getTravelerAccess: (travelers, trips, destinations, user) => {
     $('.form-container').hide();
     $('#blockColorblindContent').hide();
     traveler = new Traveler(travelers, trips, destinations, user);
-
     let yearlyTripExpenses = traveler.calculateYearlyTripExpenses().toLocaleString("en-US", {style: "currency", currency: "USD"});
-
     let travelerTrips = traveler.getMyTripDestinations();
-
     let splitName = user.name.split(' ');
     $('.content').html(`
       <section class="user-access-page">
