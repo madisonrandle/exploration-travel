@@ -23,7 +23,6 @@ class Traveler extends User {
     });
   };
 
-  // should get the last year from todays date BUT!! ... It's a leap year -_-
   calculateYearlyTripExpenses() {
     let totalTripExpense = this.getMyTripDestinations().map(destination => {
       let trip = this.getMyTrips().find(trip => destination.id === trip.destinationID);
