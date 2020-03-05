@@ -11,16 +11,8 @@ describe('domUpdates.js', () => {
     it('Should invoke showLogInForm', () => {
       expect(domUpdates.showLogInForm()).to.equal('login');
     });
-// put this in the user class
-  chai.spy.on(domUpdates, 'validateAgencyUser', () => 'agency user name');
-    it('Should invoke validateAgencyUser', () => {
-      expect(domUpdates.validateAgencyUser()).to.equal('agency user name');
-    });
-// put this in the user class
-  chai.spy.on(domUpdates, 'validateUser', () => 'user name');
-    it('Should invoke validateUser', () => {
-      expect(domUpdates.validateUser()).to.equal('user name');
-    });
+
+
 
   chai.spy.on(domUpdates, 'showErrorMessage', () => 'invalid login');
     it('Should invoke showErrorMessage', () => {
