@@ -29,4 +29,3 @@ Exploration Travel is an appication I built during my time at [Turing School of 
 ### User Page Animation
 ![Login page animation](https://media.giphy.com/media/jtngmrWscnGiq8ABit/giphy.gif)
 
-## Project Next Steps
